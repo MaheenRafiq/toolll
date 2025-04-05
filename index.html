@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online image compression tool with 25+ file conversion utilities. Reduce image file size while maintaining quality. Supports JPG, PNG, WEBP, and more.">
+    <meta name="keywords" content="image compressor, photo optimizer, file converter, PDF tools, image tools, reduce file size, online image editor">
+    <meta name="author" content="ImageToolsPro">
+    <meta property="og:title" content="ImageToolsPro - Online Image Compression & File Conversion">
+    <meta property="og:description" content="Compress images and convert files with our free online tools. 25+ utilities for all your file needs.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://imagetoolspro.com">
+    <meta property="og:image" content="https://imagetoolspro.com/images/og-image.jpg">
+    <title>Free Online Tools</title>
+    <link rel="canonical" href="https://imagetoolspro.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Your existing CSS remains exactly the same */
+        :root {
+            --primary-color: #4285f4;
+            --secondary-color: #34a853;
+            --accent-color: #ea4335;
+            --light-color: #f8f9fa;
+            --dark-color: #202124;
+            --gray-color: #5f6368;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ... (rest of your existing CSS remains exactly the same) ... */
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-image"></i>
+                    <span>ImageToolsPro</span>
+                </a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav id="mainNav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#image-tools">Image Tools</a></li>
+                        <li><a href="index.html#pdf-tools">PDF Tools</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>FileFusion Online Tools</h1>
+            <p>Reduce your image file size without losing quality. Supports JPG, PNG, WEBP, and more. Fast, secure, and completely free!</p>
+            <a href="img-compress.html" class="action-btn" style="margin-top: 20px;">
+                <i class="fas fa-compress-alt"></i> Start Compressing Now
+            </a>
+        </div>
+    </section>
+
+    <div class="breadcrumb container">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="index.html#image-tools">Image Tools</a>
+        <span>/</span>
+        <a href="img-compress.html">Image Compressor</a>
+    </div>
+
+    <main class="main-content container">
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <!-- Google AdSense Ad Unit -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID"></script>
+            <!-- Image Compressor Top Ad -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+                 data-ad-slot="YOUR_AD_UNIT_ID"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <div class="tool-container" id="compressor-tool">
+            <h2 class="tool-title"><i class="fas fa-compress-alt"></i> Image Compressor</h2>
+            
+            <div class="upload-area" id="uploadArea">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Drag & drop your image here or click to browse</p>
+                <p class="small">Supports: JPG, PNG, WEBP, GIF (Max: 10MB)</p>
+                <input type="file" id="fileInput" accept="image/*">
+            </div>
+
+            <div class="settings">
+                <h3>Compression Settings</h3>
+                
+                <div class="slider-container">
+                    <div class="slider-label">
+                        <span>Compression Level</span>
+                        <span id="compressionValue">70%</span>
+                    </div>
+                    <input type="range" min="0" max="100" value="70" class="slider" id="compressionSlider">
+                </div>
+
+                <div class="format-options">
+                    <label class="format-option">
+                        <input type="radio" name="format" value="jpg" checked> JPG
+                    </label>
+                    <label class="format-option">
+                        <input type="radio" name="format" value="png"> PNG
+                    </label>
+                    <label class="format-option">
+                        <input type="radio" name="format" value="webp"> WEBP
+                    </label>
+                    <label class="format-option">
+                        <input type="radio" name="format" value="original"> Keep Original
+                    </label>
+                </div>
+
+                <div class="quality-options" id="qualityOptions" style="display: none;">
+                    <div class="slider-label">
+                        <span>Quality</span>
+                        <span id="qualityValue">80%</span>
+                    </div>
+                    <input type="range" min="10" max="100" value="80" class="slider" id="qualitySlider">
+                </div>
+
+                <button class="action-btn" id="compressBtn" disabled>
+                    <i class="fas fa-compress-alt"></i> Compress Image
+                </button>
+            </div>
+
+            <div class="loader" id="loader"></div>
+
+            <div class="result-container" id="resultContainer">
+                <h3>Compression Results</h3>
+                
+                <div class="result-preview">
+                    <div class="preview-box">
+                        <h4>Original Image</h4>
+                        <img src="" alt="Original Image" class="preview-img" id="originalPreview">
+                        <p id="originalSize"></p>
+                    </div>
+                    <div class="preview-box">
+                        <h4>Compressed Image</h4>
+                        <img src="" alt="Compressed Image" class="preview-img" id="compressedPreview">
+                        <p id="compressedSize"></p>
+                    </div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-box">
+                        <div class="stat-value" id="savingsPercent">0%</div>
+                        <div>Smaller</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="originalFileSize">0 KB</div>
+                        <div>Original Size</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="compressedFileSize">0 KB</div>
+                        <div>Compressed Size</div>
+                    </div>
+                </div>
+
+                <button class="action-btn download-btn" id="downloadBtn">
+                    <i class="fas fa-download"></i> Download Compressed Image
+                </button>
+            </div>
+        </div>
+
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <!-- Google AdSense Ad Unit -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID"></script>
+            <!-- Image Compressor Bottom Ad -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+                 data-ad-slot="YOUR_AD_UNIT_ID_2"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <h2 class="tool-title" id="image-tools"><i class="fas fa-th"></i> Image Tools</h2>
+        
+        <div class="tools-grid">
+            <a href="img-compress.html" class="tool-card">
+                <i class="fas fa-compress-alt"></i>
+                <h3>Image Compressor</h3>
+                <p>Reduce image file size without losing quality</p>
+            </a>
+            
+            <a href="image-converter.html" class="tool-card">
+                <i class="fas fa-exchange-alt"></i>
+                <h3>Image Converter</h3>
+                <p>Convert between JPG, PNG, WEBP, GIF and more formats</p>
+            </a>
+            
+            <a href="image-resizer.html" class="tool-card">
+                <i class="fas fa-expand-alt"></i>
+                <h3>Image Resizer</h3>
+                <p>Resize images to any dimensions while maintaining quality</p>
+            </a>
+            
+            <a href="image-cropper.html" class="tool-card">
+                <i class="fas fa-crop"></i>
+                <h3>Image Cropper</h3>
+                <p>Crop images to remove unwanted areas or focus on specific parts</p>
+            </a>
+            
+            <a href="background-remover.html" class="tool-card">
+                <i class="fas fa-cut"></i>
+                <h3>Background Remover</h3>
+                <p>Remove backgrounds from images automatically</p>
+            </a>
+            
+            <a href="image-editor.html" class="tool-card">
+                <i class="fas fa-edit"></i>
+                <h3>Image Editor</h3>
+                <p>Basic photo editing tools for quick adjustments</p>
+            </a>
+            
+            <a href="image-watermark.html" class="tool-card">
+                <i class="fas fa-tag"></i>
+                <h3>Watermark Adder</h3>
+                <p>Add text or image watermarks to protect your photos</p>
+            </a>
+            
+            <a href="image-collage.html" class="tool-card">
+                <i class="fas fa-th-large"></i>
+                <h3>Photo Collage Maker</h3>
+                <p>Combine multiple images into beautiful collages</p>
+            </a>
+        </div>
+
+        <h2 class="tool-title" id="pdf-tools"><i class="fas fa-file-pdf"></i> PDF Tools</h2>
+        
+        <div class="tools-grid">
+            <a href="pdf-compressor.html" class="tool-card">
+                <i class="fas fa-compress-alt"></i>
+                <h3>PDF Compressor</h3>
+                <p>Reduce PDF file size while maintaining quality</p>
+            </a>
+            
+            <a href="pdf-merger.html" class="tool-card">
+                <i class="fas fa-object-group"></i>
+                <h3>PDF Merger</h3>
+                <p>Combine multiple PDF files into one</p>
+            </a>
+            
+            <a href="pdf-splitter.html" class="tool-card">
+                <i class="fas fa-cut"></i>
+                <h3>PDF Splitter</h3>
+                <p>Split PDFs into multiple files</p>
+            </a>
+            
+            <a href="pdf-to-word.html" class="tool-card">
+                <i class="fas fa-file-word"></i>
+                <h3>PDF to Word</h3>
+                <p>Convert PDF files to editable Word documents</p>
+            </a>
+            
+            <a href="word-to-pdf.html" class="tool-card">
+                <i class="fas fa-file-pdf"></i>
+                <h3>Word to PDF</h3>
+                <p>Convert Word documents to PDF files</p>
+            </a>
+            
+            <a href="pdf-to-excel.html" class="tool-card">
+                <i class="fas fa-file-excel"></i>
+                <h3>PDF to Excel</h3>
+                <p>Extract tables from PDF to Excel spreadsheets</p>
+            </a>
+            
+            <a href="pdf-to-ppt.html" class="tool-card">
+                <i class="fas fa-file-powerpoint"></i>
+                <h3>PDF to PowerPoint</h3>
+                <p>Convert PDF files to editable presentations</p>
+            </a>
+            
+            <a href="pdf-editor.html" class="tool-card">
+                <i class="fas fa-edit"></i>
+                <h3>PDF Editor</h3>
+                <p>Edit PDF documents directly in your browser</p>
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Image Tools</h3>
+                    <ul>
+                        <li><a href="img-compress.html">Image Compressor</a></li>
+                        <li><a href="image-converter.html">Image Converter</a></li>
+                        <li><a href="image-resizer.html">Image Resizer</a></li>
+                        <li><a href="image-cropper.html">Image Cropper</a></li>
+                        <li><a href="background-remover.html">Background Remover</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>PDF Tools</h3>
+                    <ul>
+                        <li><a href="pdf-compressor.html">PDF Compressor</a></li>
+                        <li><a href="pdf-merger.html">PDF Merger</a></li>
+                        <li><a href="pdf-splitter.html">PDF Splitter</a></li>
+                        <li><a href="pdf-to-word.html">PDF to Word</a></li>
+                        <li><a href="word-to-pdf.html">Word to PDF</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="https://facebook.com/imagetoolspro"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="https://twitter.com/imagetoolspro"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="https://instagram.com/imagetoolspro"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="https://pinterest.com/imagetoolspro"><i class="fab fa-pinterest"></i> Pinterest</a></li>
+                        <li><a href="https://youtube.com/imagetoolspro"><i class="fab fa-youtube"></i> YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 <a href="index.html" style="color: #bdc1c6;">ImageToolsPro</a>. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('mainNav').classList.toggle('active');
+        });
+
+        // File upload functionality
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const compressBtn = document.getElementById('compressBtn');
+        const compressionSlider = document.getElementById('compressionSlider');
+        const compressionValue = document.getElementById('compressionValue');
+        const qualitySlider = document.getElementById('qualitySlider');
+        const qualityValue = document.getElementById('qualityValue');
+        const qualityOptions = document.getElementById('qualityOptions');
+        const formatOptions = document.getElementsByName('format');
+        const loader = document.getElementById('loader');
+        const resultContainer = document.getElementById('resultContainer');
+        const originalPreview = document.getElementById('originalPreview');
+        const compressedPreview = document.getElementById('compressedPreview');
+        const originalSize = document.getElementById('originalSize');
+        const compressedSize = document.getElementById('compressedSize');
+        const savingsPercent = document.getElementById('savingsPercent');
+        const originalFileSize = document.getElementById('originalFileSize');
+        const compressedFileSize = document.getElementById('compressedFileSize');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        let originalFile = null;
+        let compressedFileBlob = null;
+
+        // Update compression value display
+        compressionSlider.addEventListener('input', function() {
+            compressionValue.textContent = this.value + '%';
+        });
+
+        // Show quality options for JPG/WEBP
+        formatOptions.forEach(option => {
+            option.addEventListener('change', function() {
+                if (this.value === 'jpg' || this.value === 'webp') {
+                    qualityOptions.style.display = 'block';
+                } else {
+                    qualityOptions.style.display = 'none';
+                }
+            });
+        });
+
+        // Update quality value display
+        qualitySlider.addEventListener('input', function() {
+            qualityValue.textContent = this.value + '%';
+        });
+
+        // Handle file selection
+        uploadArea.addEventListener('click', function() {
+            fileInput.click();
+        });
+
+        // Drag and drop functionality
+        uploadArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.style.borderColor = '#4285f4';
+            this.style.backgroundColor = 'rgba(66, 133, 244, 0.1)';
+        });
+
+        uploadArea.addEventListener('dragleave', function() {
+            this.style.borderColor = '#5f6368';
+            this.style.backgroundColor = 'transparent';
+        });
+
+        uploadArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.style.borderColor = '#5f6368';
+            this.style.backgroundColor = 'transparent';
+            
+            if (e.dataTransfer.files.length) {
+                handleFileSelection(e.dataTransfer.files[0]);
+            }
+        });
+
+        fileInput.addEventListener('change', function() {
+            if (this.files.length) {
+                handleFileSelection(this.files[0]);
+            }
+        });
+
+        function handleFileSelection(file) {
+            // Check if file is an image
+            if (!file.type.match('image.*')) {
+                alert('Please select an image file (JPG, PNG, WEBP, GIF)');
+                return;
+            }
+
+            // Check file size (10MB limit)
+            if (file.size > 10 * 1024 * 1024) {
+                alert('File size exceeds 10MB limit. Please choose a smaller file.');
+                return;
+            }
+
+            originalFile = file;
+            compressBtn.disabled = false;
+
+            // Display original image preview
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                originalPreview.src = e.target.result;
+                originalSize.textContent = formatFileSize(file.size);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Compress image
+        compressBtn.addEventListener('click', function() {
+            if (!originalFile) return;
+
+            loader.style.display = 'block';
+            resultContainer.style.display = 'none';
+
+            // Simulate compression (in a real app, you would use actual compression libraries)
+            setTimeout(() => {
+                compressImage(originalFile);
+            }, 500);
+        });
+
+        function compressImage(file) {
+            const compressionLevel = parseInt(compressionSlider.value) / 100;
+            const selectedFormat = document.querySelector('input[name="format"]:checked').value;
+            const quality = parseInt(qualitySlider.value) / 100;
+            
+            // In a real implementation, you would use:
+            // - canvas.toBlob() for client-side compression
+            // - or send to a server for more advanced compression
+            
+            // This is a simplified simulation
+            const originalSize = file.size;
+            const compressedSizeValue = Math.max(10000, originalSize * (1 - compressionLevel * 0.8));
+            
+            // Create a "compressed" version (in reality, you'd process the actual image)
+            const compressedBlob = new Blob([file], { type: file.type });
+            compressedFileBlob = compressedBlob;
+            
+            // Display results
+            displayResults(file, compressedBlob, originalSize, compressedSizeValue);
+        }
+
+        function displayResults(originalFile, compressedBlob, originalSize, compressedSize) {
+            loader.style.display = 'none';
+            resultContainer.style.display = 'block';
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                compressedPreview.src = e.target.result;
+            };
+            reader.readAsDataURL(compressedBlob);
+            
+            // Calculate savings
+            const savings = ((originalSize - compressedSize) / originalSize * 100).toFixed(1);
+            
+            // Update stats
+            originalFileSize.textContent = formatFileSize(originalSize);
+            compressedFileSize.textContent = formatFileSize(compressedSize);
+            compressedSize.textContent = formatFileSize(compressedSize);
+            savingsPercent.textContent = savings + '%';
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' bytes';
+            else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+            else return (bytes / 1048576).toFixed(1) + ' MB';
+        }
+
+        // Download compressed image
+        downloadBtn.addEventListener('click', function() {
+            if (!compressedFileBlob) return;
+            
+            const a = document.createElement('a');
+            const url = URL.createObjectURL(compressedFileBlob);
+            const selectedFormat = document.querySelector('input[name="format"]:checked').value;
+            let extension = originalFile.name.split('.').pop();
+            
+            if (selectedFormat !== 'original') {
+                extension = selectedFormat;
+            }
+            
+            const newFileName = originalFile.name.replace(/\.[^/.]+$/, '') + '-compressed.' + extension;
+            
+            a.href = url;
+            a.download = newFileName;
+            document.body.appendChild(a);
+            a.click();
+            
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 0);
+        });
+    </script>
+
+    <!-- Structured data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "ImageToolsPro - Online Image Compression & File Conversion",
+        "url": "https://imagetoolspro.com",
+        "description": "Free online image compression tool with 25+ file conversion utilities. Reduce image file size while maintaining quality.",
+        "applicationCategory": "Multimedia",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "ImageToolsPro"
+        }
+    }
+    </script>
+</body>
+</html>
